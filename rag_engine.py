@@ -41,10 +41,10 @@ class RAGEngine:
         )
         documents = loader.load()
 
-        # 切分文档
+        # 切分文档 带语义感知的递归式启发切分
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=500,
-            chunk_overlap=50,
+            chunk_overlap=50, #重叠度，防止丢失上下文
             separators=["\n\n", "\n", "。", "！", "？", "，", "、", ""]
         )
         chunks = text_splitter.split_documents(documents)
